@@ -1,5 +1,5 @@
-var users = require("./users");
-var projects = require("./projects");
+var users = require("./controller/users");
+var projects = require("./controller/projects");
 var http = require("http");
 var express = require("express");
 var app = express();
