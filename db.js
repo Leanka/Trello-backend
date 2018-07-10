@@ -16,7 +16,6 @@ DatabaseConnection.addNewUserToDb = function(newUser) {
                           password: newUser.password,
                           projects_ids: newUser.projects_ids
                         });
-                        
     user.save(function (err) {
     if (err) {
         return console.error(err);
@@ -46,12 +45,23 @@ DatabaseConnection.removeAllUsers = function() {
 }
 
 DatabaseConnection.getAllUsers = function(req, res) {
-    User.find(function(err, allUsers) {
+-   User.find(function(err, allUsers) {
         if(err) {
             return console.error(err);
         } else {
             res.json(allUsers)
             res.end()
+        }
+    });
+}
+
+DatabaseConnection.getUserById = function(req, res) {
+    let userId = req.params.id;
+    User.findById(userId, function (err, foundUser) {
+        if(err) {
+            console.log("Cannot find given user");
+        } else {
+            res.json(foundUser);
         }
     });
 }
