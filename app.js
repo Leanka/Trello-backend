@@ -39,3 +39,5 @@ app.get("/users/:id/projects", (req, res) => {
 app.post("/users/:id/projects", (req, res) => {
     projects.create(req, res); //create new projects
 })
+
+app.listen(process.env.PORT, process.env.IP);
