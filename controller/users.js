@@ -8,7 +8,9 @@ exports.show = (req, res) => {
     DatabaseConnection.getUserById(req, res);
 } 
 exports.crete = (req, res) => {} 
-exports.update = (req, res) => {} 
+exports.update = (req, res) => {
+    DatabaseConnection.updateUser(req, res);
+} 
 exports.delete = (req, res) => {
     DatabaseConnection.removeUser(req, res);
 } 
