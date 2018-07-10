@@ -27,7 +27,7 @@ app.delete("/users/:id", (req, res) => {
     users.delete(req, res)
 })
 
-app.patch("/users/:id/:data", (req, res) => {
+app.patch("/users/:id", (req, res) => {
     users.update(req, res);
 })
 
