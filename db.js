@@ -11,10 +11,10 @@ DatabaseConnection.connectDb = function() {
     }); 
 }
 
-DatabaseConnection.addNewUserToDb = function(newUser) {
-    let user = new User({ username: newUser.username,
-                          password: newUser.password,
-                          projects_ids: newUser.projects_ids
+DatabaseConnection.addNewUserToDb = function(req, res) {
+    let user = new User({ username: req.body.username,
+                          password: req.body.password,
+                          projects_ids: req.body.projects_ids
                         });
     user.save(function (err) {
     if (err) {
