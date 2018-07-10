@@ -1,5 +1,8 @@
 var users = require("./controller/users");
 var projects = require("./controller/projects");
+var connect = require("./db/db.js");
+connect.connectDb()
+
 var http = require("http");
 var express = require("express");
 var app = express();
@@ -7,7 +10,7 @@ app.use(express.json())  //needed?
 
 var HTTP_PORT = 8088;
 
-http.createServer(app).listen(HTTP_PORT, () => {})
+http.createServer(app).listen(HTTP_PORT, (err) => {})
 
 // "/users"
 app.get("/users", (req, res) => {
@@ -40,4 +43,4 @@ app.post("/users/:id/projects", (req, res) => {
     projects.create(req, res); //create new projects
 })
 
-app.listen(process.env.PORT, process.env.IP);
+// app.listen(process.env.PORT, process.env.IP);
