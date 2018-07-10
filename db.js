@@ -68,8 +68,8 @@ DatabaseConnection.removeUser = function(req, res){
 
 DatabaseConnection.updateUser = function(req, res){
     let userId = req.params.id;
-    let dataToUpdate = JSON.parse(req.params.data); //for data send in format {"...":"...", ...}
-    
+    let dataToUpdate = req.body;
+
     User.findByIdAndUpdate(userId, dataToUpdate, (err) => {
         if(err){
             console.log("Cannot find given user");
