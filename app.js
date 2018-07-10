@@ -3,11 +3,21 @@ var projects = require("./controller/projects");
 var http = require("http");
 var express = require("express");
 var app = express();
+var DatabaseConnection = require("./db.js");
 app.use(express.json())
 
 var HTTP_PORT = 8088;
 
 http.createServer(app).listen(HTTP_PORT, () => {})
+DatabaseConnection.connectDb();
+let newUser = {
+    username: "JanKovolsky",
+    password: "12345",
+    projects_ids: []
+}
+//DatabaseConnection.removeAllUsers();
+DatabaseConnection.addNewUserToDb(newUser);
+DatabaseConnection.showAllUsers();
 
 // "/users"
 app.get("/users", (req, res) => {
@@ -15,7 +25,7 @@ app.get("/users", (req, res) => {
 })
 
 app.post("/users", (req, res) => {
-    users,create(req, res);
+    users.create(req, res);
 })
 
 // "/users/:id"
