@@ -57,7 +57,7 @@ DatabaseConnection.getAllUsers = function(req, res) {
 
 DatabaseConnection.removeUser = function(req, res){
     let userId = req.params.id;
-    User.findByIdAndRemove(userId, (req, res) => {
+    User.findByIdAndRemove(userId, (err) => {
         if(err){
             console.log("Cannot find given user");
         }
