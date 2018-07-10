@@ -45,4 +45,15 @@ DatabaseConnection.removeAllUsers = function() {
 });
 }
 
+DatabaseConnection.getAllUsers = function(req, res) {
+    User.find(function(err, allUsers) {
+        if(err) {
+            return console.error(err);
+        } else {
+            res.json(allUsers)
+            res.end()
+        }
+    });
+}
+
 module.exports = DatabaseConnection;
