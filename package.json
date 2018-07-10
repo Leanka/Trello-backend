@@ -10,13 +10,15 @@
     "type": "git",
     "url": "git+https://github.com/Leanka/Trello-backend.git"
   },
-  "author": "",
+
+  "author": "TreloloTeam",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Leanka/Trello-backend/issues"
   },
   "homepage": "https://github.com/Leanka/Trello-backend#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongoose": "^5.2.2"
   }
 }
