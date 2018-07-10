@@ -1,17 +1,8 @@
 let mongoose = require("mongoose");
-let DatabaseConnection = {};
-let User = require("./models/user");
+let User = require(".././models/user.js");
+var UserDatabase = {}
 
-DatabaseConnection.connectDb = function() {
-    mongoose.connect("mongodb://localhost/trelolo_app");
-    let db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'connection error:'));
-    db.once('open', function() {
-        console.log('Connected to MongoDB!');
-    }); 
-}
-
-DatabaseConnection.addNewUserToDb = function(req, res) {
+UserDatabase.addNewUserToDb = function(req, res) {
     let user = new User({ username: req.body.username,
                           password: req.body.password,
                           projects_ids: req.body.projects_ids
@@ -25,7 +16,7 @@ DatabaseConnection.addNewUserToDb = function(req, res) {
   });
 }
 
-DatabaseConnection.showAllUsers = function() {
+UserDatabase.showAllUsers = function() {
     User.find(function(err, allUsers) {
         if(err) {
             return console.error(err);
@@ -35,7 +26,7 @@ DatabaseConnection.showAllUsers = function() {
     });
 }
 
-DatabaseConnection.removeAllUsers = function() {
+UserDatabase.removeAllUsers = function() {
     User.remove({}, function(err) { 
     if(err) {
         console.log("cannot clear db");
@@ -44,7 +35,7 @@ DatabaseConnection.removeAllUsers = function() {
 });
 }
 
-DatabaseConnection.getAllUsers = function(req, res) {
+UserDatabase.getAllUsers = function(req, res) {
 -   User.find(function(err, allUsers) {
         if(err) {
             return console.error(err);
@@ -55,7 +46,7 @@ DatabaseConnection.getAllUsers = function(req, res) {
     });
 }
 
-DatabaseConnection.removeUser = function(req, res){
+UserDatabase.removeUser = function(req, res){
     let userId = req.params.id;
     User.findByIdAndRemove(userId, (err) => {
         if(err){
@@ -66,7 +57,7 @@ DatabaseConnection.removeUser = function(req, res){
     })
 }
 
-DatabaseConnection.updateUser = function(req, res){
+UserDatabase.updateUser = function(req, res){
     let userId = req.params.id;
     let dataToUpdate = req.body;
 
@@ -78,7 +69,7 @@ DatabaseConnection.updateUser = function(req, res){
     })
 }
 
-DatabaseConnection.getUserById = function(req, res) {
+UserDatabase.getUserById = function(req, res) {
     let userId = req.params.id;
     User.findById(userId, function (err, foundUser) {
         if(err) {
@@ -89,4 +80,4 @@ DatabaseConnection.getUserById = function(req, res) {
     });
 }
 
-module.exports = DatabaseConnection;
+module.exports = UserDatabase;

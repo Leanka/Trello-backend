@@ -1,5 +1,4 @@
-var DatabaseConnection = require(".././db.js");
-DatabaseConnection.connectDb();
+var DatabaseConnection = require(".././db/dbUser.js");
 
 exports.index = (req, res) => {
     DatabaseConnection.getAllUsers(req, res);
