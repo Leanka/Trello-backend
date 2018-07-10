@@ -1,6 +1,19 @@
+var DatabaseConnection = require(".././db.js");
+DatabaseConnection.connectDb();
 
-exports.index = (req, res) => {} 
-exports.show = (req, res) => {} 
-exports.create = (req, res) => {} 
-exports.update = (req, res) => {} 
-exports.delete = (req, res) => {} 
+exports.index = (req, res) => {
+    DatabaseConnection.getAllUsers(req, res);
+} 
+exports.show = (req, res) => {
+    DatabaseConnection.getUserById(req, res);
+} 
+exports.create = (req, res) => {
+    DatabaseConnection.addNewUserToDb(req, res);    
+}
+
+exports.update = (req, res) => {
+    DatabaseConnection.updateUser(req, res);
+} 
+exports.delete = (req, res) => {
+    DatabaseConnection.removeUser(req, res);
+} 

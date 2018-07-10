@@ -11,12 +11,11 @@ DatabaseConnection.connectDb = function() {
     }); 
 }
 
-DatabaseConnection.addNewUserToDb = function(newUser) {
-    let user = new User({ username: newUser.username,
-                          password: newUser.password,
-                          projects_ids: newUser.projects_ids
+DatabaseConnection.addNewUserToDb = function(req, res) {
+    let user = new User({ username: req.body.username,
+                          password: req.body.password,
+                          projects_ids: req.body.projects_ids
                         });
-                        
     user.save(function (err) {
     if (err) {
         return console.error(err);
@@ -43,6 +42,51 @@ DatabaseConnection.removeAllUsers = function() {
     }
   console.log('collection removed') 
 });
+}
+
+DatabaseConnection.getAllUsers = function(req, res) {
+-   User.find(function(err, allUsers) {
+        if(err) {
+            return console.error(err);
+        } else {
+            res.json(allUsers)
+            res.end()
+        }
+    });
+}
+
+DatabaseConnection.removeUser = function(req, res){
+    let userId = req.params.id;
+    User.findByIdAndRemove(userId, (err) => {
+        if(err){
+            console.log("Cannot find given user");
+        }
+        res.json(userId)
+        res.end();
+    })
+}
+
+DatabaseConnection.updateUser = function(req, res){
+    let userId = req.params.id;
+    let dataToUpdate = req.body;
+
+    User.findByIdAndUpdate(userId, dataToUpdate, (err) => {
+        if(err){
+            console.log("Cannot find given user");
+        }
+        this.getUserById(req, res);
+    })
+}
+
+DatabaseConnection.getUserById = function(req, res) {
+    let userId = req.params.id;
+    User.findById(userId, function (err, foundUser) {
+        if(err) {
+            console.log("Cannot find given user");
+        } else {
+            res.json(foundUser);
+        }
+    });
 }
 
 module.exports = DatabaseConnection;
