@@ -56,4 +56,8 @@ DatabaseConnection.getAllUsers = function(req, res) {
     });
 }
 
+DatabaseConnection.removeUser = function(req, res){
+    User.findByIdAndRemove(res.params.id)
+}
+
 module.exports = DatabaseConnection;
