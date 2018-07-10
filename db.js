@@ -65,6 +65,18 @@ DatabaseConnection.removeUser = function(req, res){
         res.end();
     })
 }
+
+DatabaseConnection.updateUser = function(req, res){
+    let userId = req.params.id;
+    User.findByIdAndUpdate(userId, (err) => {
+        if(err){
+            console.log("Cannot find given user");
+        }
+        res.json(userId)
+        res.end();
+    })
+}
+
 DatabaseConnection.getUserById = function(req, res) {
     let userId = req.params.id;
     User.findById(userId, function (err, foundUser) {
