@@ -3,8 +3,10 @@ let mongoose = require("mongoose");
 let TaskSchema = new mongoose.Schema({
     title: String,
     parentList: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "List"
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "List"
+        }
     }
 })
 
