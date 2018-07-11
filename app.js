@@ -78,7 +78,7 @@ app.post("/projects/:id/lists", (req, res) => {
 // ******************
 
 app.get("/lists", (req, res) => {
-   lists.showAll(req, res); 
+   lists.showAll(res); 
 })
 
 app.get("/lists/:id", (req, res) => {
