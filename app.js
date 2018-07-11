@@ -105,7 +105,7 @@ app.post("/lists/:id/tasks", (req, res) => {
 // TASK routes      *
 // ******************
 app.get("/tasks", (req, res) => {
-    tasks.showAll(req,res);
+    tasks.showAll(res);
 })
 
 app.get("/tasks/:id", (req, res) => {
