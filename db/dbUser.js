@@ -1,17 +1,16 @@
-let mongoose = require("mongoose");
 let User = require(".././models/user.js");
 var UserDatabase = {}
 
 UserDatabase.addNewUserToDb = function(req, res) {
     let user = new User({ username: req.body.username,
                           password: req.body.password,
-                          projects_ids: req.body.projects_ids
                         });
     user.save(function (err) {
     if (err) {
         return console.error(err);
     } else {
-        console.log("New user added successfully");  
+        console.log("New user added successfully");
+        res.end();
     }
   });
 }
@@ -52,7 +51,7 @@ UserDatabase.removeUser = function(req, res){
         if(err){
             console.log("Cannot find given user");
         }
-        res.json(userId)
+        res.json("Removed user with id " + userId);
         res.end();
     })
 }

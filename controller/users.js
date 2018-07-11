@@ -1,18 +1,18 @@
-var DatabaseConnection = require(".././db/dbUser.js");
+var UserDatabase = require(".././db/dbUser.js");
 
 exports.index = (req, res) => {
-    DatabaseConnection.getAllUsers(req, res);
+    UserDatabase.getAllUsers(req, res);
 } 
 exports.show = (req, res) => {
-    DatabaseConnection.getUserById(req, res);
+    UserDatabase.getUserById(req, res);
 } 
 exports.create = (req, res) => {
-    DatabaseConnection.addNewUserToDb(req, res);    
+    UserDatabase.addNewUserToDb(req, res);    
 }
 
 exports.update = (req, res) => {
-    DatabaseConnection.updateUser(req, res);
+    UserDatabase.updateUser(req, res);
 } 
 exports.delete = (req, res) => {
-    DatabaseConnection.removeUser(req, res);
+    UserDatabase.removeUser(req, res);
 } 
