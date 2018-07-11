@@ -1,14 +1,6 @@
 let List = require(".././models/list.js");
 var ListDatabase = {}
 
-return new Promise((resolve, reject) => {})
-
-if (err) {
-    return reject(err)
-} else {
-    return resolve();
-}
-
 ListDatabase.addNewList = function(newList) {
     return new Promise((resolve, reject) => {
         List.create(newList, function(err, newlyCreated){
