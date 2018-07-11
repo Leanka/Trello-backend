@@ -1,6 +1,7 @@
 var users = require("./controller/users");
 var projects = require("./controller/projects");
 var lists = require("./controller/lists");
+var tasks = require("./controller/tasks");
 var connect = require("./db/db.js");
 connect.connectDb()
 
@@ -92,5 +93,9 @@ app.delete("/lists/:id", (req, res) => {
     lists.destroy(req, res);
 })
 
+app.get("/lists/:id/tasks", (req, res) => {
+    tasks.index(req, res);
+})
+
 //C9 listener
-// app.listen(process.env.PORT, process.env.IP);
+app.listen(process.env.PORT, process.env.IP);
