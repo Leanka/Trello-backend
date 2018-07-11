@@ -16,6 +16,8 @@ exports.show = (req, res) => {
     ListDatabase.getListById(req, res);
 };
 
-exports.update = (req, res) => {};
+exports.update = (req, res) => {
+    ListDatabase.updateList(req, res);
+};
 
 exports.destroy = (req, res) => {};
