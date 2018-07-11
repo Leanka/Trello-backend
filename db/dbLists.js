@@ -52,4 +52,27 @@ ListDatabase.getAllLists = function(req, res) {
     })
 }
 
+ListDatabase.updateList = function(req, res) {
+    let listId = req.params.id;
+    let dataToUpdate = req.body;
+
+    List.findByIdAndUpdate(listId, dataToUpdate, (err) => {
+        if(err){
+            console.log("Cannot find given list");
+        }
+        this.getListById(req, res);
+    })
+}
+
+ListDatabase.removeList = function(req, res) {
+    let listId = req.params.id;
+    List.findByIdAndRemove(listId, (err) => {
+        if(err){
+            console.log("Cannot find given list");
+        }
+        res.json("Removed list with id " + listId);
+        res.end();
+    })
+}
+
 module.exports = ListDatabase;
