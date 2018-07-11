@@ -1,18 +1,17 @@
 let mongoose = require("mongoose");
 
-let ProjectSchema = new mongoose.Schema({
+let ListSchema = new mongoose.Schema({
     title: String,
-    description: String,
-    author: {
+    parentProject: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
+            ref: "Project"
         },
     },
-    lists: [{
+    tasks: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "List"
+            ref: "Task"
           }]
 });
 
-module.exports = mongoose.model("Project", ProjectSchema)
+module.exports = mongoose.model("List", ListSchema);

@@ -1,5 +1,6 @@
 var users = require("./controller/users");
 var projects = require("./controller/projects");
+var lists = require("./controller/lists");
 var connect = require("./db/db.js");
 connect.connectDb()
 
@@ -44,7 +45,7 @@ app.post("/users/:id/projects", (req, res) => {
 })
 
 // ******************
-// PROJECT routes      *
+// PROJECT routes   *
 // ******************
 
 app.get("/projects", (req, res) => {
@@ -61,6 +62,26 @@ app.patch("/projects/:id", (req, res) => {
 
 app.delete("/projects/:id", (req, res) => {
     projects.delete(req, res);
+})
+
+app.get("/projects/:id/lists", (req, res) => {
+    lists.index(req,res);
+});
+
+app.post("/projects/:id/lists", (req, res) => {
+    lists.create(req, res);
+})
+
+// ******************
+// LIST routes      *
+// ******************
+
+app.get("/lists", (req, res) => {
+   lists.showAll(req, res); 
+})
+
+app.get("/lists/:id", (req, res) => {
+    lists.show(req,res);
 })
 
 //C9 listener
