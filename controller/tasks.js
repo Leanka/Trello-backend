@@ -12,7 +12,7 @@ exports.show = (req, res) => {
     TaskDatabase.getTaskById(req, res);
 };
 exports.update = (req, res) => {
-    TaskDatabase.updaterTask(req, res);
+    TaskDatabase.updateTask(req, res);
 };
 exports.remove = (req, res) => {
     TaskDatabase.removeTask(req, res);
