@@ -101,5 +101,23 @@ app.post("/lists/:id/tasks", (req, res) => {
     tasks.create(req, res);
 })
 
+// ******************
+// TASK routes      *
+// ******************
+app.get("/tasks", (req, res) => {
+    tasks.showAll(req,res);
+})
+
+app.get("/tasks/:id", (req, res) => {
+    tasks.show(req,res);
+})
+
+app.patch("/tasks/:id", (req, res) => {
+    tasks.update(req, res);
+})
+
+app.delete("/tasks/:id", (req, res) => {
+    tasks.remove(req, res);
+})
 //C9 listener
-app.listen(process.env.PORT, process.env.IP);
+// app.listen(process.env.PORT, process.env.IP);
