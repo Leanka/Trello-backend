@@ -1,14 +1,6 @@
 let Project = require(".././models/project.js");
 var ProjectDatabase = {}
 
-return new Promise((resolve, reject) => {})
-
-if (err) {
-    return reject(err)
-} else {
-    return resolve();
-}
-
 ProjectDatabase.addNewProject = function(newProject) {
     return new Promise((resolve, reject) => {
         Project.create(newProject, function(err, newlyCreated){
