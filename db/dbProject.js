@@ -1,77 +1,83 @@
 let Project = require(".././models/project.js");
 var ProjectDatabase = {}
 
-ProjectDatabase.addNewProject = function(req, res) {
-    let author = {
-        id : req.params.id
-    }
+return new Promise((resolve, reject) => {})
 
-    let newProject = { title : req.body.title,
-                       description : req.body.description,
-                       author : author
-    }
-    
-    Project.create(newProject, function(err, newlyCreated) {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log("New project created successfully");
-            res.end();
-        }
+if (err) {
+    return reject(err)
+} else {
+    return resolve();
+}
+
+ProjectDatabase.addNewProject = function(newProject) {
+    return new Promise((resolve, reject) => {
+        Project.create(newProject, function(err, newlyCreated){
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve();
+            }
+        })
     })
 }
 
-ProjectDatabase.getUserProjects = function(req, res) {
-    Project.find({"author.id":req.params.id}, function(err, userProjects) {
-        if(err) {
-            console.log(err);
-        } else {
-          res.json(userProjects);  
-        }
+ProjectDatabase.getUserProjects = function(userId) {
+    return new Promise((resolve, reject) => {
+        Project.find({"author.id":userId}, function(err, userProjects){
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve(userProjects);
+            }
+        })
     })
 }
 
-ProjectDatabase.getAllProjects = function(req, res) {
-    Project.find(function(err, allProjects) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.json(allProjects);
-        }
+ProjectDatabase.getAllProjects = function() {
+    return new Promise((resolve, reject) => {
+        Project.find(function(err, allProjects) {
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve(allProjects);
+            }
+        })
     })
 }
 
-ProjectDatabase.getProjectById = function(req, res) {
-    let projectId = req.params.id;
-    Project.findById(projectId, function(err, foundProject) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.json(foundProject);
-        }
+ProjectDatabase.getProjectById = function(projectId) {
+    return new Promise((resolve, reject) => {
+        Project.findById(projectId, function(err, foundProject) {
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve(foundProject);
+            }
+        })
     })
 }
 
-ProjectDatabase.updateProject = function(req, res) {
-    let projectId = req.params.id;
-    let dataToUpdate = req.body;
-
-    Project.findByIdAndUpdate(projectId, dataToUpdate, (err) => {
-        if(err){
-            console.log("Cannot find given project");
-        }
-        this.getProjectById(req, res);
+ProjectDatabase.updateProject = function(projectId, dataToUpdate) {
+    return new Promise((resolve, reject) => {
+        Project.findByIdAndUpdate(projectId, dataToUpdate, (err) => {
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve();
+            }
+        })
     })
 }
 
-ProjectDatabase.removeProject = function(req, res) {
-    let projectId = req.params.id;
-    Project.findByIdAndRemove(projectId, (err) => {
-        if(err){
-            console.log("Cannot find given project");
-        }
-        res.json("Removed project with id " + projectId);
-        res.end();
+ProjectDatabase.removeProject = function(projectId) {
+    return new Promise((resolve, reject) => {
+        Project.findByIdAndRemove(projectId, (err) => {
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve();
+            }
+        })
     })
 }
 
