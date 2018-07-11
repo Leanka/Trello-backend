@@ -13,23 +13,16 @@ UserDatabase.addNewUserToDb = function(user) {
     })
 }
 
-UserDatabase.showAllUsers = function() {
-    User.find(function(err, allUsers) {
-        if(err) {
-            return console.error(err);
-        } else {
-            console.log(allUsers);
-        }
-    });
-}
-
 UserDatabase.removeAllUsers = function() {
-    User.remove({}, function(err) { 
-    if(err) {
-        console.log("cannot clear db");
-    }
-  console.log('collection removed') 
-});
+    return new Promise((resolve, reject) => {
+        User.remove({}, function(err) { 
+            if(err) {
+                return reject(err);
+            } else {
+                return resolve();
+            }
+        });
+    })
 }
 
 UserDatabase.getAllUsers = function(req, res) {
