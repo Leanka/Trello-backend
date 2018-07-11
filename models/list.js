@@ -7,11 +7,7 @@ let ListSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Project"
         },
-    },
-    tasks: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Task"
-          }]
+    }
 });
 
 module.exports = mongoose.model("List", ListSchema);
