@@ -50,7 +50,7 @@ app.post("/users/:id/projects", (req, res) => {
 // ******************
 
 app.get("/projects", (req, res) => {
-    projects.showAll(req, res);
+    projects.showAll(res);
 })
 
 app.get("/projects/:id", (req, res) => {
