@@ -12,7 +12,9 @@ var HTTP_PORT = 8088;
 
 http.createServer(app).listen(HTTP_PORT, (err) => {})
 
-// "/users"
+// ******************
+// USER routes      *
+// ******************
 app.get("/users", (req, res) => {
     users.index(req, res);
 })
@@ -21,7 +23,6 @@ app.post("/users", (req, res) => {
     users.create(req, res);
 })
 
-// "/users/:id"
 app.get("/users/:id", (req, res) => {
     users.show(req, res);
 })
@@ -34,13 +35,20 @@ app.patch("/users/:id", (req, res) => {
     users.update(req, res);
 })
 
-// "users/:id/projects"
 app.get("/users/:id/projects", (req, res) => {
     projects.index(req, res); //show all user projects
 })
 
 app.post("/users/:id/projects", (req, res) => {
-    projects.create(req, res); //create new projects
+    projects.create(req, res); //create new project
+})
+
+// ******************
+// PROJECT routes      *
+// ******************
+
+app.get("/projects", (req, res) => {
+    projects.showAll(req, res); //get All projects
 })
 
 //C9 listener
