@@ -17,3 +17,7 @@ exports.update = (req, res) => {
 exports.remove = (req, res) => {
     TaskDatabase.removeTask(req, res);
 };
+
+exports.showAll = (req, res) => {
+    TaskDatabase.getAllTasks(req, res);
+}
