@@ -88,5 +88,9 @@ app.patch("/lists/:id", (req, res) => {
     lists.update(req, res);
 })
 
+app.delete("/lists/:id", (req, res) => {
+    lists.destroy(req, res);
+})
+
 //C9 listener
 // app.listen(process.env.PORT, process.env.IP);

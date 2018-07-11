@@ -20,4 +20,6 @@ exports.update = (req, res) => {
     ListDatabase.updateList(req, res);
 };
 
-exports.destroy = (req, res) => {};
+exports.destroy = (req, res) => {
+    ListDatabase.removeList(req, res);
+};

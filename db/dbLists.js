@@ -64,4 +64,15 @@ ListDatabase.updateList = function(req, res) {
     })
 }
 
+ListDatabase.removeList = function(req, res) {
+    let listId = req.params.id;
+    List.findByIdAndRemove(listId, (err) => {
+        if(err){
+            console.log("Cannot find given list");
+        }
+        res.json("Removed list with id " + listId);
+        res.end();
+    })
+}
+
 module.exports = ListDatabase;
