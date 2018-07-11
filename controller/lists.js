@@ -1,25 +1,48 @@
 var ListDatabase = require(".././db/dbLists.js");
 
-exports.showAll = (req, res) => {
-    ListDatabase.getAllLists(req, res);
+exports.showAll = (res) => {
+    ListDatabase.getAllLists().then((result) => {
+        res.json(result)
+        res.end()
+    })
 }
 
 exports.create = (req, res) => {
-    ListDatabase.addNewList(req, res);
+    let parentProject = { id : req.params.id }
+
+    let newList = { 
+                    title : req.body.title,
+                    parentProject : parentProject
+                  }
+
+    ListDatabase.addNewList(newList).then((result) => {
+        res.json(result)
+        res.end()
+    })
 }
 
 exports.index = (req, res) => {
-    ListDatabase.getProjectLists(req, res);
+    ListDatabase.getProjectLists(req.params.id).then((result) => {
+        res.json(result)
+        res.end()
+    })
 }
 
 exports.show = (req, res) => {
-    ListDatabase.getListById(req, res);
+    ListDatabase.getListById(req.params.id).then((result) => {
+        res.json(result)
+        res.end()
+    })
 };
 
 exports.update = (req, res) => {
-    ListDatabase.updateList(req, res);
+    ListDatabase.updateList(req.params.id, req.body).then(() => {
+        res.end()
+    })
 };
 
 exports.destroy = (req, res) => {
-    ListDatabase.removeList(req, res);
+    ListDatabase.removeList(req.params.id).then(() => {
+        res.end()
+    })
 };
