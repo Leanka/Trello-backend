@@ -43,7 +43,15 @@ TaskDatabase.getTaskById = (req, res)=>{
     })
 };
 
-TaskDatabase.getAllTasks = (req, res)=>{};
+TaskDatabase.getAllTasks = (req, res)=>{
+    Task.find({}, (err, tasks) =>{
+        if(err){
+            console.log("Cannot get task at all");
+        }
+        res.json(tasks);
+        res.end()
+    })
+};
 
 TaskDatabase.updateTask = (req, res)=>{
     let taskId = req.params.id;
