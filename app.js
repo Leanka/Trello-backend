@@ -97,5 +97,9 @@ app.get("/lists/:id/tasks", (req, res) => {
     tasks.index(req, res);
 })
 
+app.post("/lists/:id/tasks", (req, res) => {
+    tasks.create(req, res);
+})
+
 //C9 listener
 app.listen(process.env.PORT, process.env.IP);

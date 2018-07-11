@@ -4,7 +4,9 @@ exports.index = (req, res) => {
     TaskDatabase.getListTasks(req, res);
 };
 
-exports.create = (req, res) => {};
+exports.create = (req, res) => {
+    TaskDatabase.addNewTask(req, res);
+};
 
 exports.show = (req, res) => {
     TaskDatabase.getTaskById(req, res);
