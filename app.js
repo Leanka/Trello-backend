@@ -18,7 +18,7 @@ http.createServer(app).listen(HTTP_PORT, (err) => {})
 // USER routes      *
 // ******************
 app.get("/users", (req, res) => {
-    users.index(req, res);
+    users.index(res);
 })
 
 app.post("/users", (req, res) => {
