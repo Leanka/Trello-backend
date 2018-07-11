@@ -48,7 +48,19 @@ app.post("/users/:id/projects", (req, res) => {
 // ******************
 
 app.get("/projects", (req, res) => {
-    projects.showAll(req, res); //get All projects
+    projects.showAll(req, res);
+})
+
+app.get("/projects/:id", (req, res) => {
+    projects.show(req, res);
+})
+
+app.patch("/projects/:id", (req, res) => {
+    projects.update(req, res);
+})
+
+app.delete("/projects/:id", (req, res) => {
+    projects.delete(req, res);
 })
 
 //C9 listener

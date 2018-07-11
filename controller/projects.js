@@ -13,11 +13,11 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    
+    ProjectDatabase.updateProject(req, res);
 }
 
 exports.delete = (req, res) => {
-    
+    ProjectDatabase.removeProject(req, res);
 }
 
 exports.showAll = (req,res) => {

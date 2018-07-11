@@ -43,13 +43,35 @@ ProjectDatabase.getAllProjects = function(req, res) {
 
 ProjectDatabase.getProjectById = function(req, res) {
     let projectId = req.params.id;
-    console.log(projectId);
     Project.findById(projectId, function(err, foundProject) {
         if(err) {
             console.log(err);
         } else {
             res.json(foundProject);
         }
+    })
+}
+
+ProjectDatabase.updateProject = function(req, res) {
+    let projectId = req.params.id;
+    let dataToUpdate = req.body;
+
+    Project.findByIdAndUpdate(projectId, dataToUpdate, (err) => {
+        if(err){
+            console.log("Cannot find given project");
+        }
+        this.getProjectById(req, res);
+    })
+}
+
+ProjectDatabase.removeProject = function(req, res) {
+    let projectId = req.params.id;
+    Project.findByIdAndRemove(projectId, (err) => {
+        if(err){
+            console.log("Cannot find given project");
+        }
+        res.json("Removed project with id " + projectId);
+        res.end();
     })
 }
 
