@@ -5,7 +5,7 @@ exports.index = (req, res) => {
 }
 
 exports.show = (req, res) => {
-    
+    ProjectDatabase.getProjectById(req,res);
 }
 
 exports.create = (req, res) => {

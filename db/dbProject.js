@@ -41,4 +41,16 @@ ProjectDatabase.getAllProjects = function(req, res) {
     })
 }
 
+ProjectDatabase.getProjectById = function(req, res) {
+    let projectId = req.params.id;
+    console.log(projectId);
+    Project.findById(projectId, function(err, foundProject) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.json(foundProject);
+        }
+    })
+}
+
 module.exports = ProjectDatabase;
