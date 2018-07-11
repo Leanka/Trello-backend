@@ -1,77 +1,83 @@
 let List = require(".././models/list.js");
 var ListDatabase = {}
 
-ListDatabase.addNewList = function(req, res) {
-    let parentProject = {
-                          id : req.params.id
-                        }
+return new Promise((resolve, reject) => {})
 
-    let newList = { 
-                    title : req.body.title,
-                    parentProject : parentProject
-                  }
-    
-    List.create(newList, function(err, newlyCreated) {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log("New list created successfully");
-            res.end();
-        }
+if (err) {
+    return reject(err)
+} else {
+    return resolve();
+}
+
+ListDatabase.addNewList = function(newList) {
+    return new Promise((resolve, reject) => {
+        List.create(newList, function(err, newlyCreated){
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve(newlyCreated);
+            }
+        })
     })
 }
 
-ListDatabase.getProjectLists = function(req, res) {
-        List.find({"parentProject.id": req.params.id}, function(err, projectLists) {
-        if(err) {
-            console.log(err);
-        } else {
-          res.json(projectLists);  
-        }
+ListDatabase.getProjectLists = function(projectId) {
+    return new Promise((resolve, reject) => {
+        List.find({"parentProject.id": projectId}, function(err, projectLists) {
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve(projectLists);
+            }
+        })
     })
 }
 
-ListDatabase.getListById = function(req, res) {
-    let listId = req.params.id;
-    List.findById(listId, function(err, foundList) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.json(foundList);
-        }
+ListDatabase.getListById = function(listId) {
+    return new Promise((resolve, reject) => {
+        List.findById(listId, function(err, foundList) {
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve(foundList);
+            }
+        })
     })
 }
 
-ListDatabase.getAllLists = function(req, res) {
-    List.find({}, function(err, allLists) {
-        if(err) {
-            console.log(err.message);
-        } else {
-            res.json(allLists);
-        }
+ListDatabase.getAllLists = function() {
+    return new Promise((resolve, reject) => {
+        List.find({}, function(err, allLists) {
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve(allLists);
+            }
+        })
     })
 }
 
-ListDatabase.updateList = function(req, res) {
-    let listId = req.params.id;
-    let dataToUpdate = req.body;
-
-    List.findByIdAndUpdate(listId, dataToUpdate, (err) => {
-        if(err){
-            console.log("Cannot find given list");
-        }
-        this.getListById(req, res);
+ListDatabase.updateList = function(listId, dataToUpdate) {
+    return new Promise((resolve, reject) => {
+        List.findByIdAndUpdate(listId, dataToUpdate, (err) => {
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve();
+            }
+        })
     })
 }
 
-ListDatabase.removeList = function(req, res) {
-    let listId = req.params.id;
-    List.findByIdAndRemove(listId, (err) => {
-        if(err){
-            console.log("Cannot find given list");
-        }
-        res.json("Removed list with id " + listId);
-        res.end();
+ListDatabase.removeList = function(listId) {
+    return new Promise((resolve, reject) => {
+        List.findByIdAndRemove(listId, (err) => {
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve();
+            }
+        })
     })
 }
 
