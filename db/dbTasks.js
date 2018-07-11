@@ -61,17 +61,19 @@ TaskDatabase.updateTask = (req, res)=>{
         if(err){
             console.log("Cannot update given task");
         }
-        return this.getTaskById(req, res);
+        res.json("Updated task with id " + taskId);
+        res.end();
+        // this.getTaskById(req, res);
     })
 };
 TaskDatabase.removeTask = (req, res)=>{
-    let taskId = req.body.id;
+    let taskId = req.params.id;
 
     Task.findByIdAndRemove(taskId, (err) => {
         if(err){
             console.log("Cannot remove given task");
         }
-        res.json("Removed task with id " + listId);
+        res.json("Removed task with id " + taskId);
         res.end();
     })
 };
