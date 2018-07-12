@@ -18,7 +18,7 @@ http.createServer(app).listen(HTTP_PORT, (err) => {})
 // USER routes      *
 // ******************
 app.get("/users", (req, res) => {
-    users.index(req, res);
+    users.index(res);
 })
 
 app.post("/users", (req, res) => {
@@ -50,7 +50,7 @@ app.post("/users/:id/projects", (req, res) => {
 // ******************
 
 app.get("/projects", (req, res) => {
-    projects.showAll(req, res);
+    projects.showAll(res);
 })
 
 app.get("/projects/:id", (req, res) => {
@@ -78,7 +78,7 @@ app.post("/projects/:id/lists", (req, res) => {
 // ******************
 
 app.get("/lists", (req, res) => {
-   lists.showAll(req, res); 
+   lists.showAll(res); 
 })
 
 app.get("/lists/:id", (req, res) => {
@@ -105,7 +105,7 @@ app.post("/lists/:id/tasks", (req, res) => {
 // TASK routes      *
 // ******************
 app.get("/tasks", (req, res) => {
-    tasks.showAll(req,res);
+    tasks.showAll(res);
 })
 
 app.get("/tasks/:id", (req, res) => {
