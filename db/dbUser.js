@@ -39,12 +39,14 @@ UserDatabase.getAllUsers = function(req, res) {
 
 UserDatabase.removeUser = function(userId){
     return new Promise((resolve, reject) => {
-        User.findByIdAndRemove(userId, (err) => {
+        User.findOne({"_id":userId}, (err, user) => {
             if(err) {
-                return reject(err);
-            } else {
-                return resolve();
-            }
+                        return reject(err);
+                    } else {
+                        user.remove()
+                        console.log("after removing!");
+                        return resolve();
+                    }
         })
     })
 }
