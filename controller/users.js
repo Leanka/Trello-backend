@@ -1,18 +1,37 @@
 var UserDatabase = require(".././db/dbUser.js");
+let User = require(".././models/user.js");
 
-exports.index = (req, res) => {
-    UserDatabase.getAllUsers(req, res);
+exports.index = (res) => {
+    UserDatabase.getAllUsers().then((result)=>{
+        res.json(result)
+        res.end()
+    })
 } 
 exports.show = (req, res) => {
-    UserDatabase.getUserById(req, res);
+    UserDatabase.getUserById(req.params.id).then((result) => {
+        res.json(result)
+        res.end()
+    });
 } 
 exports.create = (req, res) => {
-    UserDatabase.addNewUserToDb(req, res);    
+    let user = new User({ 
+        username: req.body.username,
+        password: req.body.password,
+    });
+
+    UserDatabase.addNewUserToDb(user).then(() => {
+        res.end()
+    })  
 }
 
 exports.update = (req, res) => {
-    UserDatabase.updateUser(req, res);
+    UserDatabase.updateUser(req.params.id, req.body).then(() => {
+        res.end()
+    })
 } 
 exports.delete = (req, res) => {
-    UserDatabase.removeUser(req, res);
+    let userId = req.params.id;
+    UserDatabase.removeUser(userId).then(() => {
+        res.end();
+    })
 } 
