@@ -1,4 +1,5 @@
 let mongoose = require("mongoose");
+let Task = require("./task.js");
 
 let ListSchema = new mongoose.Schema({
     title: String,
@@ -9,5 +10,16 @@ let ListSchema = new mongoose.Schema({
         },
     }
 });
+
+ListSchema.pre('remove', function(){
+    Task.find({"parentList.id":this._id}, (err, tasks) => {
+        if(err){
+            console.log(err);
+        }
+        for(task of tasks){
+            task.remove();
+        }
+    }).exec();
+})
 
 module.exports = mongoose.model("List", ListSchema);
