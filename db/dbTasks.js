@@ -63,16 +63,15 @@ TaskDatabase.updateTask = (taskId, dataToUpdate)=>{
 
 TaskDatabase.removeTask = (taskId)=>{
     return new Promise((resolve, reject) => {
-        Task.findByIdAndRemove(taskId, (err) => {
+        Task.findOne({"_id":taskId}, (err, task) => {
             if (err) {
                 return reject(err)
             } else {
+                task.remove();
                 return resolve();
             }
         })
     })
 };
-
-TaskDatabase.removeAllTasksFromList = (req, res)=>{};
 
 module.exports = TaskDatabase;

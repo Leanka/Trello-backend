@@ -13,18 +13,6 @@ UserDatabase.addNewUserToDb = function(user) {
     })
 }
 
-UserDatabase.removeAllUsers = function() {
-    return new Promise((resolve, reject) => {
-        User.remove({}, function(err) { 
-            if(err) {
-                return reject(err);
-            } else {
-                return resolve();
-            }
-        });
-    })
-}
-
 UserDatabase.getAllUsers = function(req, res) {
     return new Promise((resolve, reject) => {
         User.find(function(err, allUsers) {
@@ -39,10 +27,11 @@ UserDatabase.getAllUsers = function(req, res) {
 
 UserDatabase.removeUser = function(userId){
     return new Promise((resolve, reject) => {
-        User.findByIdAndRemove(userId, (err) => {
+        User.findOne({"_id":userId}, (err, user) => {
             if(err) {
                 return reject(err);
             } else {
+                user.remove()
                 return resolve();
             }
         })
@@ -55,7 +44,6 @@ UserDatabase.updateUser = function(userId, dataToUpdate){
             if(err){
                 return reject(err);
             }
-            // this.getUserById(req, res);
             return resolve();
         })
     })

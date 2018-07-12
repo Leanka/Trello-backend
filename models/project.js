@@ -1,4 +1,5 @@
 let mongoose = require("mongoose");
+let List = require("./list.js")
 
 let ProjectSchema = new mongoose.Schema({
     title: String,
@@ -6,9 +7,20 @@ let ProjectSchema = new mongoose.Schema({
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
+            ref: "User",
         },
     }
 });
+
+ProjectSchema.pre('remove', function(){
+    List.find({"parentProject.id":this._id}, (err, lists) => {
+        if(err){
+            console.log(err);
+        }
+        for(list of lists){
+            list.remove();
+        }
+    }).exec();
+})
 
 module.exports = mongoose.model("Project", ProjectSchema)

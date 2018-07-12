@@ -63,10 +63,11 @@ ListDatabase.updateList = function(listId, dataToUpdate) {
 
 ListDatabase.removeList = function(listId) {
     return new Promise((resolve, reject) => {
-        List.findByIdAndRemove(listId, (err) => {
+        List.findOne({"_id":listId}, (err, list) => {
             if (err) {
                 return reject(err)
             } else {
+                list.remove();
                 return resolve();
             }
         })
