@@ -63,10 +63,11 @@ ProjectDatabase.updateProject = function(projectId, dataToUpdate) {
 
 ProjectDatabase.removeProject = function(projectId) {
     return new Promise((resolve, reject) => {
-        Project.findByIdAndRemove(projectId, (err) => {
+        Project.findOne({"_id":projectId}, (err, project) => {
             if (err) {
                 return reject(err)
             } else {
+                project.remove();
                 return resolve();
             }
         })
