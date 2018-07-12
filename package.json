@@ -1,0 +1,25 @@
+{
+  "name": "trello-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leanka/Trello-backend.git"
+  },
+
+  "author": "TreloloTeam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Leanka/Trello-backend/issues"
+  },
+  "homepage": "https://github.com/Leanka/Trello-backend#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.2"
+  }
+}
