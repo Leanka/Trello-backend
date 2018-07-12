@@ -57,7 +57,6 @@ UserDatabase.updateUser = function(userId, dataToUpdate){
             if(err){
                 return reject(err);
             }
-            // this.getUserById(req, res);
             return resolve();
         })
     })
