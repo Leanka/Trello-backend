@@ -73,6 +73,4 @@ TaskDatabase.removeTask = (taskId)=>{
     })
 };
 
-TaskDatabase.removeAllTasksFromList = (req, res)=>{};
-
 module.exports = TaskDatabase;
