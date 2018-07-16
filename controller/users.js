@@ -1,5 +1,4 @@
 var UserDatabase = require(".././db/dbUser.js");
-let User = require(".././models/user.js");
 
 exports.index = (res) => {
     UserDatabase.getAllUsers().then((result)=>{
@@ -14,10 +13,10 @@ exports.show = (req, res) => {
     });
 } 
 exports.create = (req, res) => {
-    let user = new User({ 
+    let user = { 
         username: req.body.username,
         password: req.body.password,
-    });
+    };
 
     UserDatabase.addNewUserToDb(user).then((result) => {
         res.json({"id":result});
