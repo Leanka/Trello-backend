@@ -30,8 +30,7 @@ exports.update = (req, res) => {
     })
 } 
 exports.delete = (req, res) => {
-    let userId = req.params.id;
-    UserDatabase.removeUser(userId).then(() => {
+    UserDatabase.removeUser(req.params.id).then(() => {
         res.end();
     })
 } 
