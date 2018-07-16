@@ -16,7 +16,7 @@ exports.create = (req, res) => {
                   }
 
     ListDatabase.addNewList(newList).then((result) => {
-        res.json(result)
+        res.json({"id":result});
         res.end()
     })
 }
