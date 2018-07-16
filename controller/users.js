@@ -19,7 +19,8 @@ exports.create = (req, res) => {
         password: req.body.password,
     });
 
-    UserDatabase.addNewUserToDb(user).then(() => {
+    UserDatabase.addNewUserToDb(user).then((result) => {
+        res.json({"id":result});
         res.end()
     })  
 }
