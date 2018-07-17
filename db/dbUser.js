@@ -3,11 +3,11 @@ var UserDatabase = {}
 
 UserDatabase.addNewUserToDb = function(user) {
     return new Promise((resolve, reject) => {
-        user.save(function (err) {
+        User.create(user, function (err, userData) {
             if (err) {
                 return reject(err)
             } else {
-                return resolve();
+                return resolve(userData._id);
             }
           });
     })

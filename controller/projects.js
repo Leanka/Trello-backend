@@ -22,7 +22,8 @@ exports.create = (req, res) => {
                        author : author
     }
 
-    ProjectDatabase.addNewProject(newProject).then(() => {
+    ProjectDatabase.addNewProject(newProject).then((result) => {
+        res.json({"id":result});
         res.end()
     })
 }
