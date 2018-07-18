@@ -7,7 +7,7 @@ let UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre('remove', function() {
-    Project.find({"author.id":this._id}, (err, projects) => {
+    Project.find({"parentKey.id":this._id}, (err, projects) => {
         if(err){
             console.log(err);
         }

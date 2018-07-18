@@ -8,11 +8,10 @@ exports.index = (req, res) => {
 };
 
 exports.create = (req, res) => {
-    let parentList = { id : req.params.id }
 
     let newTask = { 
         title : req.body.title,
-        parentList : parentList
+        parentKey : { id : req.params.id }
     }
 
     TaskDatabase.addNewTask(newTask).then((result) => {
