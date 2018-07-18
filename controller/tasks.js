@@ -11,7 +11,10 @@ exports.create = (req, res) => {
 
     let newTask = { 
         title : req.body.title,
+        position: 0,
+        status: "todo",
         parentKey : { id : req.params.id }
+
     }
 
     TaskDatabase.addNewTask(newTask).then((result) => {
