@@ -3,7 +3,7 @@ let Task = require("./task.js");
 
 let ListSchema = new mongoose.Schema({
     title: String,
-    parentProject: {
+    parentKey: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Project"

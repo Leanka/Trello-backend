@@ -13,7 +13,7 @@ let ProjectSchema = new mongoose.Schema({
 });
 
 ProjectSchema.pre('remove', function(){
-    List.find({"parentProject.id":this._id}, (err, lists) => {
+    List.find({"parentKey.id":this._id}, (err, lists) => {
         if(err){
             console.log(err);
         }
