@@ -2,7 +2,7 @@ let mongoose = require("mongoose");
 
 let TaskSchema = new mongoose.Schema({
     title: String,
-    parentList: {
+    parentKey: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "List"
