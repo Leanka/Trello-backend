@@ -4,7 +4,7 @@ let List = require("./list.js")
 let ProjectSchema = new mongoose.Schema({
     title: String,
     description: String,
-    author: {
+    parentKey: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
