@@ -7,7 +7,7 @@ ListDatabase.addNewList = function(newList) {
             if (err) {
                 return reject(err)
             } else {
-                return resolve(newlyCreated);
+                return resolve(newlyCreated._id);
             }
         })
     })
@@ -15,7 +15,7 @@ ListDatabase.addNewList = function(newList) {
 
 ListDatabase.getProjectLists = function(projectId) {
     return new Promise((resolve, reject) => {
-        List.find({"parentProject.id": projectId}, function(err, projectLists) {
+        List.find({"parentKey.id": projectId}, function(err, projectLists) {
             if (err) {
                 return reject(err)
             } else {

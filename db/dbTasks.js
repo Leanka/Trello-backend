@@ -7,7 +7,7 @@ TaskDatabase.addNewTask = (newTask)=>{
             if (err) {
                 return reject(err)
             } else {
-                return resolve(newlyCreated);
+                return resolve(newlyCreated._id);
             }
         })
     })
@@ -15,7 +15,7 @@ TaskDatabase.addNewTask = (newTask)=>{
 
 TaskDatabase.getListTasks = (listId)=>{
     return new Promise((resolve, reject) => {
-        Task.find({"parentList.id":listId}, function(err, listTasks) {
+        Task.find({"parentKey.id":listId}).sort("position").exec(function(err, listTasks) {
             if (err) {
                 return reject(err)
             } else {

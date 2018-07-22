@@ -15,14 +15,13 @@ exports.show = (req, res) => {
 }
 
 exports.create = (req, res) => {
-    let author = { id : req.params.id }
-
     let newProject = { title : req.body.title,
                        description : req.body.description,
-                       author : author
+                       parentKey : { id : req.params.id }
     }
 
-    ProjectDatabase.addNewProject(newProject).then(() => {
+    ProjectDatabase.addNewProject(newProject).then((result) => {
+        res.json({"id":result});
         res.end()
     })
 }

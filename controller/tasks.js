@@ -8,15 +8,17 @@ exports.index = (req, res) => {
 };
 
 exports.create = (req, res) => {
-    let parentList = { id : req.params.id }
 
     let newTask = { 
         title : req.body.title,
-        parentList : parentList
+        position: 0,
+        status: "todo",
+        parentKey : { id : req.params.id }
+
     }
 
     TaskDatabase.addNewTask(newTask).then((result) => {
-        res.json(result)
+        res.json({"id":result});
         res.end()
     })
 };
