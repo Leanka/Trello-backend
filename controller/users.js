@@ -1,6 +1,10 @@
 var UserDatabase = require(".././db/dbUser.js");
 let User = require(".././models/user.js");
 
+exports.findUser = (req, res) => {
+    return UserDatabase.findByUserName(req.body.username, req.body.password)
+}
+
 exports.index = (res) => {
     UserDatabase.getAllUsers().then((result)=>{
         res.json(result)
