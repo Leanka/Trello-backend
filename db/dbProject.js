@@ -7,7 +7,7 @@ ProjectDatabase.addNewProject = function(newProject) {
             if (err) {
                 return reject(err)
             } else {
-                return resolve();
+                return resolve(newlyCreated);
             }
         })
     })

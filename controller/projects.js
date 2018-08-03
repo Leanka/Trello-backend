@@ -21,7 +21,8 @@ exports.create = (req, res) => {
                        description : req.body.description,
                        parentKey : author
     }
-    ProjectDatabase.addNewProject(newProject).then(() => {
+    ProjectDatabase.addNewProject(newProject).then((result) => {
+        res.json(result);
         res.end()
     })
 }

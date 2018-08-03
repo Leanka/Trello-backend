@@ -40,17 +40,15 @@ app.post("/api/login", (req, res) => {
 })
 
 //FORMAT OF TOKEN
-//Authorization: Bearer <access_token>
+//Authorization: Bearer%<access_token>
 
 function verifyToken(req, res, next) {
-    console.log("TOKEN TO VERIFY " + req.headers['authorization']);
     let bearerHeader = req.headers['authorization'];
     if(typeof bearerHeader !== 'undefined') {
         let bearer = bearerHeader.split('%');
         let bearerToken = bearer[1];
         req.token = bearerToken;
         next();
-        console.log("###### SUCCESS !! ######");
     } else {
         res.sendStatus(403); //Forbidden
     }
