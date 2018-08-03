@@ -3,13 +3,14 @@ var projects = require("./controller/projects");
 var lists = require("./controller/lists");
 var tasks = require("./controller/tasks");
 var connect = require("./db/db.js");
+
 var jwt = require('jsonwebtoken');
 var cors= require('cors');
-connect.connectDb();
-
 var http = require("http");
 var express = require("express");
 var app = express();
+
+connect.connectDb();
 app.use(express.json());
 app.use(cors());
 

@@ -7,7 +7,7 @@ ListDatabase.addNewList = function(newList) {
             if (err) {
                 return reject(err)
             } else {
-                return resolve(newlyCreated);
+                return resolve(newlyCreated._id);
             }
         })
     })

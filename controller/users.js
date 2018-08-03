@@ -1,5 +1,4 @@
 var UserDatabase = require(".././db/dbUser.js");
-let User = require(".././models/user.js");
 
 exports.findUser = (req, res) => {
     return UserDatabase.findByUserName(req.body.username, req.body.password)
@@ -18,12 +17,13 @@ exports.show = (req, res) => {
     });
 } 
 exports.create = (req, res) => {
-    let user = new User({ 
+    let user = { 
         username: req.body.username,
         password: req.body.password,
-    });
+    };
 
-    UserDatabase.addNewUserToDb(user).then(() => {
+    UserDatabase.addNewUserToDb(user).then((result) => {
+        res.json({"id":result});
         res.end()
     })  
 }
@@ -34,8 +34,7 @@ exports.update = (req, res) => {
     })
 } 
 exports.delete = (req, res) => {
-    let userId = req.params.id;
-    UserDatabase.removeUser(userId).then(() => {
+    UserDatabase.removeUser(req.params.id).then(() => {
         res.end();
     })
 } 

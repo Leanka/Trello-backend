@@ -19,6 +19,12 @@ exports.create = (req, res) => {
         res.json(result)
         res.end()
     })
+    }
+
+    TaskDatabase.addNewTask(newTask).then((result) => {
+        res.json({"id":result});
+        res.end()
+    })
 };
 
 exports.show = (req, res) => {
