@@ -1,5 +1,9 @@
 var UserDatabase = require(".././db/dbUser.js");
 
+exports.findUser = (req, res) => {
+    return UserDatabase.findByUserName(req.body.username, req.body.password)
+}
+
 exports.index = (res) => {
     UserDatabase.getAllUsers().then((result)=>{
         res.json(result)

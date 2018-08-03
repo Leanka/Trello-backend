@@ -61,4 +61,16 @@ UserDatabase.getUserById = function(userId) {
     })
 }
 
+UserDatabase.findByUserName = function(username, password) {
+        return new Promise((resolve, reject) => {
+        User.findOne({"username":username, "password":password}, (err, user) => {
+            if(err) {
+                return reject(err);
+            } else {
+                return resolve(user);
+            }
+        })
+    })
+}
+
 module.exports = UserDatabase;
