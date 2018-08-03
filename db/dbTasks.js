@@ -7,7 +7,7 @@ TaskDatabase.addNewTask = (newTask)=>{
             if (err) {
                 return reject(err)
             } else {
-                return resolve(newlyCreated._id);
+                return resolve(newlyCreated);
             }
         })
     })
@@ -15,7 +15,7 @@ TaskDatabase.addNewTask = (newTask)=>{
 
 TaskDatabase.getListTasks = (listId)=>{
     return new Promise((resolve, reject) => {
-        Task.find({"parentKey.id":listId}).sort("position").exec(function(err, listTasks) {
+        Task.find({"parentKey.id":listId}, function(err, listTasks) {
             if (err) {
                 return reject(err)
             } else {
@@ -24,6 +24,17 @@ TaskDatabase.getListTasks = (listId)=>{
         })
     })
 };
+// TaskDatabase.getListTasks = (listId)=>{
+//     return new Promise((resolve, reject) => {
+//         Task.find({"parentKey.id":listId}).sort("position").exec(function(err, listTasks) {
+//             if (err) {
+//                 return reject(err)
+//             } else {
+//                 return resolve(listTasks);
+//             }
+//         })
+//     })
+// };
 
 TaskDatabase.getTaskById = (taskId)=>{
     return new Promise((resolve, reject) => {

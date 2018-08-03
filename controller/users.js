@@ -23,7 +23,6 @@ exports.create = (req, res) => {
     };
 
     UserDatabase.addNewUserToDb(user).then((result) => {
-        res.json({"id":result});
         res.end()
     })  
 }
