@@ -8,13 +8,15 @@ exports.showAll = (res) => {
 }
 
 exports.create = (req, res) => {
+    let parentProject = { id : req.params.id }
+
     let newList = { 
                     title : req.body.title,
-                    parentKey : { id : req.params.id }
+                    parentKey : parentProject
                   }
 
     ListDatabase.addNewList(newList).then((result) => {
-        res.json({"id":result});
+        res.json(result)
         res.end()
     })
 }
