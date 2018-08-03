@@ -9,7 +9,7 @@ connect.connectDb()
 var http = require("http");
 var express = require("express");
 var app = express();
-app.use(express.json())  //needed?
+app.use(express.json());
 
 var HTTP_PORT = 8088;
 
@@ -32,7 +32,7 @@ app.post("/api/login", (req, res) => {
         }
     })  
     } else {
-        res.json("Given user has no permission to this API");
+        res.json("### Given user has no permission to this API ###");
     } 
     });
 })
@@ -41,12 +41,14 @@ app.post("/api/login", (req, res) => {
 //Authorization: Bearer <access_token>
 
 function verifyToken(req, res, next) {
+    console.log("TOKEN TO VERIFY " + req.headers['authorization']);
     let bearerHeader = req.headers['authorization'];
     if(typeof bearerHeader !== 'undefined') {
-        let bearer = bearerHeader.split(' ');
+        let bearer = bearerHeader.split('%');
         let bearerToken = bearer[1];
         req.token = bearerToken;
         next();
+        console.log("###### SUCCESS !! ######");
     } else {
         res.sendStatus(403); //Forbidden
     }
@@ -56,7 +58,7 @@ app.get("/users", verifyToken, (req, res) => {
     users.index(res);
 })
 
-app.post("/users", verifyToken, (req, res) => {
+app.post("/users", (req, res) => {
     users.create(req, res);
 })
 

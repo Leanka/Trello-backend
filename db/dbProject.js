@@ -15,7 +15,7 @@ ProjectDatabase.addNewProject = function(newProject) {
 
 ProjectDatabase.getUserProjects = function(userId) {
     return new Promise((resolve, reject) => {
-        Project.find({"author.id":userId}, function(err, userProjects){
+        Project.find({"parentKey.id":userId}, function(err, userProjects){
             if (err) {
                 return reject(err)
             } else {

@@ -4,7 +4,7 @@ let List = require("./list.js")
 let ProjectSchema = new mongoose.Schema({
     title: String,
     description: String,
-    author: {
+    parentKey: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
@@ -13,7 +13,7 @@ let ProjectSchema = new mongoose.Schema({
 });
 
 ProjectSchema.pre('remove', function(){
-    List.find({"parentProject.id":this._id}, (err, lists) => {
+    List.find({"parentKey.id":this._id}, (err, lists) => {
         if(err){
             console.log(err);
         }

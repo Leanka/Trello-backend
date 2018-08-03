@@ -12,7 +12,7 @@ exports.create = (req, res) => {
 
     let newList = { 
                     title : req.body.title,
-                    parentProject : parentProject
+                    parentKey : parentProject
                   }
 
     ListDatabase.addNewList(newList).then((result) => {

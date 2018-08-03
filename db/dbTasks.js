@@ -15,7 +15,7 @@ TaskDatabase.addNewTask = (newTask)=>{
 
 TaskDatabase.getListTasks = (listId)=>{
     return new Promise((resolve, reject) => {
-        Task.find({"parentList.id":listId}, function(err, listTasks) {
+        Task.find({"parentKey.id":listId}, function(err, listTasks) {
             if (err) {
                 return reject(err)
             } else {

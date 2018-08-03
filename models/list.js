@@ -3,7 +3,7 @@ let Task = require("./task.js");
 
 let ListSchema = new mongoose.Schema({
     title: String,
-    parentProject: {
+    parentKey: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Project"
@@ -12,7 +12,7 @@ let ListSchema = new mongoose.Schema({
 });
 
 ListSchema.pre('remove', function(){
-    Task.find({"parentList.id":this._id}, (err, tasks) => {
+    Task.find({"parentKey.id":this._id}, (err, tasks) => {
         if(err){
             console.log(err);
         }

@@ -12,7 +12,7 @@ exports.create = (req, res) => {
 
     let newTask = { 
         title : req.body.title,
-        parentList : parentList
+        parentKey : parentList
     }
 
     TaskDatabase.addNewTask(newTask).then((result) => {
