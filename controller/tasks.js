@@ -16,12 +16,6 @@ exports.create = (req, res) => {
     }
 
     TaskDatabase.addNewTask(newTask).then((result) => {
-        res.json(result)
-        res.end()
-    })
-    }
-
-    TaskDatabase.addNewTask(newTask).then((result) => {
         res.json({"id":result});
         res.end()
     })
