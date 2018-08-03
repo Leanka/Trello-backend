@@ -5,7 +5,7 @@ var tasks = require("./controller/tasks");
 var connect = require("./db/db.js");
 var jwt = require('jsonwebtoken');
 var cors= require('cors');
-connect.connectDb()
+connect.connectDb();
 
 var http = require("http");
 var express = require("express");
@@ -38,21 +38,6 @@ app.post("/api/login", (req, res) => {
     } 
     });
 })
-
-//FORMAT OF TOKEN
-//Authorization: Bearer%<access_token>
-
-function verifyToken(req, res, next) {
-    let bearerHeader = req.headers['authorization'];
-    if(typeof bearerHeader !== 'undefined') {
-        let bearer = bearerHeader.split('%');
-        let bearerToken = bearer[1];
-        req.token = bearerToken;
-        next();
-    } else {
-        res.sendStatus(403); //Forbidden
-    }
-}
 
 app.get("/users", verifyToken, (req, res) => {
     users.index(res);
@@ -156,6 +141,20 @@ app.patch("/tasks/:id", verifyToken, (req, res) => {
 app.delete("/tasks/:id", verifyToken, (req, res) => {
     tasks.remove(req, res);
 })
+
+function verifyToken(req, res, next) {
+    //FORMAT OF TOKEN
+    //"Authorization: Bearer%<access_token>""
+    let bearerHeader = req.headers['authorization'];
+    if(typeof bearerHeader !== 'undefined') {
+        let bearer = bearerHeader.split('%');
+        let bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.sendStatus(403); // Respond: Forbidden
+    }
+}
 
 //C9 listener
 app.listen(process.env.PORT, process.env.IP);
