@@ -7,7 +7,7 @@ UserDatabase.addNewUserToDb = function(user) {
             if (err) {
                 return reject(err)
             } else {
-                return resolve(userData._id);
+                return resolve(userData);
             }
           });
     })

@@ -7,7 +7,7 @@ TaskDatabase.addNewTask = (newTask)=>{
             if (err) {
                 return reject(err)
             } else {
-                return resolve(newlyCreated._id);
+                return resolve(newlyCreated);
             }
         })
     })
